@@ -1,75 +1,89 @@
-import { useEffect, useState } from 'react';
-import './Add.css'
-import { useDispatch , useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import './Add.css';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { addProduct } from '../../JS/ACTIONS/productActions';
-import { Image } from 'cloudinary-react';
 import axios from 'axios';
-import { Cloudinary } from "@cloudinary/url-gen";
 
 function Add() {
-  const dispatch=useDispatch()
-  const Navigate=useNavigate()
-    const[product,setProduct]=useState(null)
-    const userval=useSelector(state=>state.user.user)
-    const[file,setFile]=useState()
-   
-    const handlechange=async (e)=>{
-        if([e.target.name]!="photo")
-        {setProduct({...product,[e.target.name]:e.target.value})}
-    
-    else{
-        setProduct({...product,[e.target.name]:e.target.value})
-        await setFile(product.photo)
-        phonoMan()
-    }
-}
-    const phonoMan=async()=>{
-            const result= await axios.post("http://localhost:8000/api/cloudinary/photo",file)
-            console.log(result)
-    }
-   const  handleClick=async()=>{
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [product, setProduct] = useState({
+    name: '',
+    description: '',
+    quantity: 0,
+    category: '',
+    photo: null,
+    price: 0
+  });
 
-      await dispatch(addProduct(product))
-      Navigate("/profile")
-     
-   }
-   
+  const handlechange = (e) => {
+    const { name, value, files } = e.target;
+    setProduct(prevState => ({
+      ...prevState,
+      [name]: files ? files[0] : value
+    }));
+  };
+
+  const handleClick = async () => {
+    const file = product.photo;
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'products_preset'); // Replace with your upload preset
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/dvdx4mvqx/image/upload`, {
+          method: 'POST',
+          body: formData,
+        }
+      );
+      const data = await response.json();
+      console.log('Upload successful:', data);
+
+      const updatedProduct = { ...product, photo: data.secure_url };
+      await dispatch(addProduct(updatedProduct));
+      navigate("/profile");
+    } catch (error) {
+      console.error('Upload failed:', error);
+    }
+  };
+
   return (
     <div id="Container">
-    <div className="elements-holder">
+      <div className="elements-holder">
         <label>Name:</label>
-        <input type="text" className="text" placeholder="Name" name="name" onChange={(e)=>handlechange(e)}/> 
-    </div>
-    <div className="elements-holder">
+        <input type="text" className="text" placeholder="Name" name="name" onChange={handlechange} /> 
+      </div>
+      <div className="elements-holder">
         <label>Description</label>
-        <input type="text" className="text" placeholder="lastName" name="description" onChange={(e)=>handlechange(e)} /> 
-    </div>
-    <div className="elements-holder">
-        <label>quantity:</label>
-        <input type="Number" className="text" placeholder="quantity" name="quantity"  onChange={(e)=>handlechange(e)}/> 
-    </div>
-    <div id="elements-holder" className="elements-holder">
-  <label>Category:</label>
-  <select className="text" name="category" onChange={(e) => handlechange(e)}>
-    <option value="">Select category...</option>
-    <option value="laptop">Laptop</option>
-    <option value="desktop_pc">Desktop PC</option>
-    <option value="accessories">Accessories</option>
-  </select>
-</div>
-
-    <div className="elements-holder">
-        <label>photo:</label>
-        <input type="file" className="text" name="photo" onChange={(e)=>handlechange(e)} /> 
-    </div>
-    <div className="elements-holder">
+        <input type="text" className="text" placeholder="Description" name="description" onChange={handlechange} /> 
+      </div>
+      <div className="elements-holder">
+        <label>Quantity:</label>
+        <input type="number" className="text" placeholder="Quantity" name="quantity" onChange={handlechange} /> 
+      </div>
+      <div className="elements-holder">
+        <label>Category:</label>
+        <select className="text" name="category" onChange={handlechange}>
+          <option value="">Select category...</option>
+          <option value="laptop">Laptop</option>
+          <option value="desktop_pc">Desktop PC</option>
+          <option value="accessories">Accessories</option>
+        </select>
+      </div>
+      <div className="elements-holder">
+        <label>Photo:</label>
+        <input type="file" className="text" name="photo" onChange={handlechange} /> 
+      </div>
+      <div className="elements-holder">
         <label>Price:</label>
-        <input type="number" className="text" placeholder="Price(TND)"  name="price"onChange={(e)=>handlechange(e)}/> 
+        <input type="number" className="text" placeholder="Price(TND)" name="price" onChange={handlechange} /> 
+      </div>
+      <button onClick={handleClick}>Complete</button>
     </div>
-
-    <button onClick={handleClick}>Complete</button>
-</div>
   );
 }
 
