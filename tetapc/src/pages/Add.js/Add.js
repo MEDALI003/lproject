@@ -45,7 +45,7 @@ function Add() {
 
       const updatedProduct = { ...product, photo: data.secure_url };
       await dispatch(addProduct(updatedProduct));
-      navigate("/profile");
+      navigate("/");
     } catch (error) {
       console.error('Upload failed:', error);
     }

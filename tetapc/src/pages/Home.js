@@ -12,6 +12,7 @@ const Home = () => {
   const fix=0
   useEffect(()=>{
     const products=async()=>{
+      dispatch(current())
       dispatch(get_product())
     }
     products()
@@ -20,7 +21,7 @@ const Home = () => {
 console.log(product)
 
   return (
-    <div>
+    <div style={{display:"flex", flexWrap:"wrap",justifyContent:"center"}}>
 {product ? product.map((el, index) => <CardB  product={el} />) : <Spinner />}    
 </div>
   );
