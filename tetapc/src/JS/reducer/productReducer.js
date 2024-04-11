@@ -14,6 +14,7 @@ export const productReducer=(state=initialstate,{type,payload})=>{
         case MODIFY:
             return {...state,load:false}
         case GET_PRODUCTS:
+            console.log(payload.products)
             return {...state,load:false,product:payload}
         case DELETE_PRODUCT:
             return {...state,load:false}

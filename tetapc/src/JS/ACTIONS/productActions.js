@@ -21,7 +21,7 @@ try {
 export const modify=(price,_id)=>async(dispatch)=>{
 dispatch({type:LOAD_PRODUCT})
 try {
-let result= await axios.put(`/api/product/updateproduct/${_id}`,price)
+let result= await axios.put(`http://localhost:8000/api/product/updateproduct/${_id}`,price)
 dispatch({type:MODIFY,payload:price})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
@@ -30,8 +30,8 @@ dispatch({type:FAIL_PRODUCT,payload:error})
 export const get_product=()=>async(dispatch)=>{
 dispatch({type:LOAD_PRODUCT})
 try {
-let result= await axios.get(`/api/product/products`)
-dispatch({type:GET_PRODUCTS,payload:result})
+let result= await axios.get(`http://localhost:8000/api/product/products`)
+dispatch({type:GET_PRODUCTS,payload:result.data})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
 }
@@ -39,7 +39,7 @@ dispatch({type:FAIL_PRODUCT,payload:error})
 export const delete_product=(_id)=>async(dispatch)=>{
 dispatch({type:LOAD_PRODUCT})
 try {
-let result= await axios.delete(`/api/product/deleteproduct/${_id}`)
+let result= await axios.delete(`http://localhost:8000/api/product/deleteproduct/${_id}`)
 dispatch({type:DELETE_PRODUCT,payload:result})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
