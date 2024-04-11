@@ -9,7 +9,7 @@ import { useDispatch , useSelector} from "react-redux";
 import { logout } from '../../JS/ACTIONS/actions';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 function Navb() {
   const dispatch=useDispatch()
   const user =useSelector(state=>state.user.user)
@@ -17,7 +17,15 @@ function Navb() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/">
+          <img
+            src={"https://res.cloudinary.com/dvdx4mvqx/image/upload/v1712874468/s61yodqkyheunf6gohcw.png"}
+            alt="Navbar Logo"
+            width="100"
+            height="50"
+            className="d-inline-block align-top"
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -25,14 +33,17 @@ function Navb() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Link to="/addproduct">add</Link>
+            
             <Nav.Link ><Link to={"/"} style={{ textDecoration: "none",color:"black" }}>Home</Link></Nav.Link>
-           <diV style={user===null?{display:"flex"}:{display:"none"}}><Nav.Link ><Link to={"/register"} style={{ textDecoration: "none",color:"black" }}>register</Link></Nav.Link>
-            <Nav.Link ><Link to={"/login"} style={{ textDecoration: "none",color:"black" }}>login</Link></Nav.Link></diV>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
+            <Nav.Link style={(user && user.privileges === "Admin") ? { display: "flex" } : { display: "none" }}>
+  <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>add</Link>
+</Nav.Link>
+
+
+            <NavDropdown title="filter" id="navbarScrollingDropdown">
+              <NavDropdown.Item >prix decroissant</NavDropdown.Item>
+              <NavDropdown.Item >
+               prix croissant
               </NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
@@ -51,7 +62,8 @@ function Navb() {
               aria-label="Search"
             />
           </Form>
-          <Nav.Link ><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link></Nav.Link>
+          <Nav.Link ><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

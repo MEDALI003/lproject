@@ -21,18 +21,16 @@ const userReducer=(state=initialState,{type,payload})=>{
         case SIGNUP:
             toast(payload.msg)
             localStorage.setItem("token", payload.token);
-            
-               
             return{...state,user:payload.newUser,load:false}
         case SIGNIN :
             toast(payload.msg)
                 localStorage.setItem("token",payload.token)
             return{...state,load:false,user:payload.foundUser}
         case FAIL_USER:
-            toast(payload)
+            toast.error("please verify you're email and password")
             return{...state,error:payload.data,load:false}
         case EDIT_PASSWORD:
-            toast("PAssword updated")
+            toast("Password updated")
             return{...state,load:false}
         case EDIT_IMAGE:
                 toast("image updated success")

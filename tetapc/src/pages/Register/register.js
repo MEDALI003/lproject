@@ -10,7 +10,7 @@ function Register() {
     const userval=useSelector(state=>state.user.user)
     useEffect(()=>{
       if (userval!=null) {
-          Navigate("/profile")
+          Navigate("/")
       }
   },[userval])
     const handlechange=(e)=>{
@@ -18,7 +18,7 @@ function Register() {
     }
    const  handleClick=async()=>{
       await dispatch(signup(user))
-      Navigate("/profile")
+     
      
    }
    

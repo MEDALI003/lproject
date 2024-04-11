@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './login.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../JS/ACTIONS/actions';
 import { toast } from 'react-toastify';
 
@@ -13,7 +13,7 @@ function Login() {
 
   useEffect(() => {
     if (userFromStore) {
-      Navigate("/profile");
+      Navigate("/");
     }
   }, [userFromStore, Navigate]);
 
@@ -24,7 +24,7 @@ function Login() {
   const handleClick = async () => {
     if (user.email && user.password) {
       await dispatch(login(user));
-      Navigate("/profile");
+      
     } else {
       toast.error("Please enter both email and password");
     }
@@ -41,6 +41,7 @@ function Login() {
         <input type="password" className="text" placeholder="password" name="password" value={user.password} onChange={handleChange} />
       </div>
       <button onClick={handleClick}>Login</button>
+      <p>If you don't have an acccount you can <Link to={"/register"} style={{ textDecoration: "none" }}>Register</Link></p>
     </div>
   );
 }
