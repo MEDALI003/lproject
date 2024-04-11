@@ -1,3 +1,24 @@
+/* Customize scrollbar appearance */
+.card-content::-webkit-scrollbar {
+  width: 10px; /* Set the width of the scrollbar */
+}
+
+.card-content::-webkit-scrollbar-thumb {
+  background-color: grey; /* Set the color of the scrollbar thumb */
+  border-radius: 10px; /* Set the border radius of the scrollbar thumb */
+}
+
+.card-content::-webkit-scrollbar-thumb:hover {
+  background-color: grey, /* Set the color of the scrollbar thumb on hover */
+}
+
+.card-content::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the color of the scrollbar track */
+  border-radius: 10px; /* Set the border radius of the scrollbar track */
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the scrollbar track */
+}
+
+/* Existing card styles */
 .card {
   display: flex;
   flex-direction: column;
@@ -15,7 +36,7 @@
 
 .card-image {
   width: 350px;
-  height: 250px; /* Adjust height as needed */
+  height: 50%; /* Adjust height as needed */
   overflow: hidden;
 }
 
@@ -43,7 +64,14 @@
 .card-subtitle {
   font-size: 16px;
   color: #666;
-  margin-bottom: 8px;
+  margin-bottom: 4px; /* Reduced margin between title and price */
+}
+
+.card-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4CAF50;
+  margin-bottom: 4px; /* Reduced margin between price and button */
 }
 
 .card-description {
@@ -57,30 +85,11 @@
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 12px 24px;
+  padding: 8px 16px; /* Reduced padding for button */
   cursor: pointer;
   font-size: 16px;
 }
 
 .card-button:hover {
   background-color: #45a049;
-}
-
-/* Customize scrollbar appearance */
-.card-content::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
-}
-
-.card-content::-webkit-scrollbar-thumb {
-  background-color: #888; /* Set the color of the scrollbar thumb */
-  border-radius: 5px; /* Set the border radius of the scrollbar thumb */
-}
-
-.card-content::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Set the color of the scrollbar thumb on hover */
-}
-
-.card-content::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Set the color of the scrollbar track */
-  border-radius: 5px; /* Set the border radius of the scrollbar track */
 }

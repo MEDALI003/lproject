@@ -6,7 +6,8 @@ export const MODIFY="modify"
 export const DELETE_PRODUCT="delete the product"
 export const LOAD_PRODUCT="load product"
 export const FAIL_PRODUCT="fail_product"
-
+export const NEXTPAGE="next"
+export const PREVIOUSPAGE='previous'
 
 export const addProduct=(product)=>async(dispatch)=>{
     dispatch({type:LOAD_PRODUCT})
@@ -44,4 +45,14 @@ dispatch({type:DELETE_PRODUCT,payload:result})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
 }
+}
+export const nextp=()=>{
+    return {
+            type:NEXTPAGE
+    }
+}
+export const previousp=()=>{
+    return {
+            type:PREVIOUSPAGE
+    }
 }

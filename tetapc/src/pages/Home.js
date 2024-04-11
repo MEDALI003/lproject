@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { current } from '../JS/ACTIONS/actions';
 import { useNavigate } from "react-router-dom";
 import { get_product } from '../JS/ACTIONS/productActions';
-import CardB from '../components/Navbar/Card/Card';
-import Spinner from "../components/Spinner"
+import Pagination from '../components/Pagination/Pag';
+import CardContainer from '../components/cards-container/CardContainer';
 const Home = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -21,8 +21,9 @@ const Home = () => {
 console.log(product)
 
   return (
-    <div style={{display:"flex", flexWrap:"wrap",justifyContent:"center"}}>
-{product ? product.map((el, index) => <CardB  product={el} />) : <Spinner />}    
+    <div>
+      <CardContainer product={product} />
+
 </div>
   );
 };

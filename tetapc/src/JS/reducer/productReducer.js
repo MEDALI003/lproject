@@ -1,10 +1,11 @@
-import { ADD_PRODUCT, DELETE_PRODUCT, FAIL_PRODUCT, GET_PRODUCTS, LOAD_PRODUCT, MODIFY } from "../ACTIONS/productActions"
+import { ADD_PRODUCT, DELETE_PRODUCT, FAIL_PRODUCT, GET_PRODUCTS, LOAD_PRODUCT, MODIFY, NEXTPAGE, PREVIOUSPAGE } from "../ACTIONS/productActions"
 import { toast } from "react-toastify"
 
 const initialstate={
     product:null,
     load:false,
-    error:true
+    error:true,
+    pag:1
 }
 
 
@@ -24,6 +25,10 @@ export const productReducer=(state=initialstate,{type,payload})=>{
             return{...state,load:false,error:payload}
         case LOAD_PRODUCT:
             return{...state,load:true}
+        case NEXTPAGE:
+            return{...state,pag:(state.pag<state.product.length/3)?+1:state.pag}
+        case PREVIOUSPAGE:
+            return {...state,pag:(state.pag!=1)?-1:state.pag}
         default:
             return state
     }
