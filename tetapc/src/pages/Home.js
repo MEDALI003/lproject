@@ -4,6 +4,7 @@ import { current } from '../JS/ACTIONS/actions';
 import { useNavigate } from "react-router-dom";
 import { get_product } from '../JS/ACTIONS/productActions';
 import CardContainer from '../components/cards-container/CardContainer';
+import FooterB from '../components/Footer/Footer';
 const Home = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -24,7 +25,7 @@ console.log(product)
   return (
     <div>
       <CardContainer product={product} />
-
+      <FooterB />
 </div>
   );
 };

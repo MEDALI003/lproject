@@ -35,8 +35,8 @@ function Navb() {
           >
             
             <Nav.Link ><Link to={"/"} style={{ textDecoration: "none",color:"black" }}>Home</Link></Nav.Link>
-            <Nav.Link style={(user && user.privileges === "Admin") ? { display: "flex" } : { display: "none" }}>
-  <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>add</Link>
+            <Nav.Link style={(user && user.prefileges === "Admin") ? { display: "flex" } : { display: "none" }}>
+  <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>Add product</Link>
 </Nav.Link>
 
 

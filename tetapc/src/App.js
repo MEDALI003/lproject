@@ -18,18 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      {user && (
-        <ToastContainer
-          position="top-center"
-          autoClose={2000} // Set autoClose to 2000 milliseconds (2 seconds)
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          draggable
-          theme="light"
-        />
-      )}
+      
 
       <Navb />
       <Routes>
@@ -40,8 +29,20 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="/productData/:_id" element={<Test />} />
       </Routes>
-      <FooterB />
+      
+        <ToastContainer
+          position="top-center"
+          autoClose={2000} // Set autoClose to 2000 milliseconds (2 seconds)
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          theme="light"
+        />
+     
     </div>
+
   );
 }
 

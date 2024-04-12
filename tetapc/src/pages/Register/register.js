@@ -48,14 +48,7 @@ function Register() {
         <label>phone number:</label>
         <input type="text" className="text" placeholder="(+216)" name="phone"  onChange={(e)=>handlechange(e)}/> 
     </div>
-    <div className="elements-holder">
-        <label>Price:</label>
-        <input type="number" className="text" placeholder="Price(TND)"  name="price"onChange={(e)=>handlechange(e)}/> 
-    </div>
-    <div className="elements-holder">
-        <label>Role:</label>
-        <input type="text" className="text" placeholder="role" name="prefileges"onChange={(e)=>handlechange(e)} /> 
-    </div>
+    
     <button onClick={handleClick}>register</button>
 </div>
   );

@@ -13,6 +13,7 @@ function Login() {
 
   useEffect(() => {
     if (userFromStore) {
+      toast("Logged in successfully")
       Navigate("/");
     }
   }, [userFromStore, Navigate]);
