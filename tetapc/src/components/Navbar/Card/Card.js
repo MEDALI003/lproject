@@ -1,11 +1,15 @@
 import React from 'react';
 import './Card.css';
+import { useNavigate } from 'react-router-dom';
 
 
 const Card=(props)=> {
-
+  const Navigate=useNavigate()
+  const handleClick=()=>{
+      Navigate(`/productData/${props.product._id}`)
+}
   return (
-    <div className="card" style={{margin:'50px'}}>
+    <div className="card" style={{margin:'50px'}} onClick={()=>handleClick()}>
       {<div className="card-image"><img src={props.product.photo} alt={props.product.name} /></div>}
       <div className="card-content">
         <h2 className="card-title">{props.product.name}</h2>

@@ -36,8 +36,9 @@ const userReducer=(state=initialState,{type,payload})=>{
                 toast("image updated success")
                 return{...state,load:false}
         case LOGOUT:
+            toast("Logged Out successffully")
             localStorage.removeItem("token")
-            return{...state,user:null}  
+            return{...state,user:null,load:false}  
         case CURRENT:
             toast(payload.msg)
             return{...state,user:payload,load:false}

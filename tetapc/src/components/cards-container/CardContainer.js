@@ -5,11 +5,12 @@ import './CardContainer.css'; // Import CSS file for styling
 
 const CardContainer = ({ product }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 9;
   const totalPages = product ? Math.ceil(product.length / itemsPerPage) : 0; // Check if product is not null
-
+ 
   useEffect(() => {
     setCurrentPage(1); // Reset current page when product list changes
+    
   }, [product]);
 
   const handlePageChange = (page) => {

@@ -10,38 +10,37 @@ import { useSelector } from "react-redux";
 import Add from "./pages/Add.js/Add";
 import Error from "./pages/Error";
 import { useEffect, useState } from "react";
+import Test from "./components/Test.js/Test";
 function App() {
-  const user=useSelector(state=>state.user.user)
-  const [place,setPlace]=useState()
- 
+  const user = useSelector(state => state.user.user);
+  const [place, setPlace] = useState();
+
   return (
     <div className="App">
-     <Navb />
-     <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/addproduct"  element={<Add />}/>
-          <Route path="/error" element={<Error />}/>
-     </Routes>
-     <ToastContainer
-position="top-center"
-autoClose={5000}
-hideProgressBar={false}
-newestOnTop={false}
-closeOnClick
-rtl={false}
-pauseOnFocusLoss
-draggable
-pauseOnHover
-theme="light"
+      {user && (
+        <ToastContainer
+          position="top-center"
+          autoClose={2000} // Set autoClose to 2000 milliseconds (2 seconds)
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          draggable
+          theme="light"
+        />
+      )}
 
-/>
-{/* Same as */}
-<ToastContainer />
+      <Navb />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/addproduct" element={<Add />} />
+        <Route path="/error" element={<Error />} />
+        <Route path="/productData/:_id" element={<Test />} />
+      </Routes>
     </div>
   );
-
 }
 
 export default App;
