@@ -11,6 +11,7 @@ import Add from "./pages/Add.js/Add";
 import Error from "./pages/Error";
 import { useEffect, useState } from "react";
 import Test from "./components/Test.js/Test";
+import FooterB from "./components/Footer/Footer";
 function App() {
   const user = useSelector(state => state.user.user);
   const [place, setPlace] = useState();
@@ -39,6 +40,7 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="/productData/:_id" element={<Test />} />
       </Routes>
+      <FooterB />
     </div>
   );
 }
