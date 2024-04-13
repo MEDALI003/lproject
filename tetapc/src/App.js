@@ -14,13 +14,12 @@ import Test from "./components/Test.js/Test";
 import FooterB from "./components/Footer/Footer";
 function App() {
   const user = useSelector(state => state.user.user);
-  const [place, setPlace] = useState();
-
+ 
   return (
     <div className="App">
       
 
-      <Navb />
+      <Navb  />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

@@ -8,7 +8,7 @@ export const LOAD_PRODUCT="load product"
 export const FAIL_PRODUCT="fail_product"
 export const NEXTPAGE="next"
 export const PREVIOUSPAGE='previous'
-
+export const SEARCH="tri"
 export const addProduct=(product)=>async(dispatch)=>{
     dispatch({type:LOAD_PRODUCT})
 try {
@@ -54,5 +54,11 @@ export const nextp=()=>{
 export const previousp=()=>{
     return {
             type:PREVIOUSPAGE
+    }
+}
+export const search=(tr)=>{
+    return{
+        type:SEARCH,
+        payload:tr
     }
 }

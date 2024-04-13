@@ -13,7 +13,7 @@ import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 function Navb() {
   const dispatch=useDispatch()
   const user =useSelector(state=>state.user.user)
-
+ 
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -38,18 +38,6 @@ function Navb() {
             <Nav.Link style={(user && user.prefileges === "Admin") ? { display: "flex" } : { display: "none" }}>
   <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>Add product</Link>
 </Nav.Link>
-
-
-            <NavDropdown title="filter" id="navbarScrollingDropdown">
-              <NavDropdown.Item >prix decroissant</NavDropdown.Item>
-              <NavDropdown.Item >
-               prix croissant
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Something else here
-              </NavDropdown.Item>
-            </NavDropdown>
             <Nav.Link href="#" disabled>
               Link
             </Nav.Link>
@@ -57,9 +45,10 @@ function Navb() {
           <Form className="d-flex">
             <Form.Control
               type="search"
-              placeholder="Search"
+              placeholder="search by name or description"
               className="me-2"
               aria-label="Search"
+             
             />
           </Form>
           <Nav.Link ><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
