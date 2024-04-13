@@ -5,8 +5,10 @@ import './CardContainer.css'; // Import CSS file for styling
 import Form from 'react-bootstrap/Form';
 
 const CardContainer = ({ product }) => {
+
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
   const itemsPerPage = 9;
   const totalPages = product ? Math.ceil(product.length / itemsPerPage) : 0; // Check if product is not null
 
@@ -20,6 +22,10 @@ const CardContainer = ({ product }) => {
 
   const handleSortChange = (e) => {
     setSortOrder(e.target.value);
+  };
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
   };
 
   const renderPagination = () => {
@@ -49,15 +55,34 @@ const CardContainer = ({ product }) => {
     displayedProducts.sort((a, b) => b.price - a.price);
   }
 
-  displayedProducts = displayedProducts.slice(startIndex, endIndex);
+  // Filter products based on search term
+  displayedProducts = displayedProducts.filter(product => {
+    const name = product.name.toUpperCase().trim();
+    const description = product.description.toUpperCase().trim();
+    const search = searchTerm.toUpperCase().trim();
+    return name.includes(search) || description.includes(search);
+  });
 
+  displayedProducts = displayedProducts.slice(startIndex, endIndex);
   return (
     <div>
-      <div style={{width:"100px"}}><Form.Select aria-label="Default select example" onChange={handleSortChange}>
-        <option defaultValue={"0"}>Open this select menu</option>
-        <option value="1">Tri Ascendent par prix</option>
-        <option value="2">Tri Descendent par prix</option>
-      </Form.Select>
+      <div style={{backgroundColor:"#333",display:"flex",justifyContent:"space-around"}}>
+        <div style={{width:"170px"}}>
+          <Form.Select aria-label="Default select example" onChange={handleSortChange}>
+            <option defaultValue={"0"}>Methode de Tri</option>
+            <option value="1">Tri Ascendent par prix</option>
+            <option value="2">Tri Descendent par prix</option>
+          </Form.Select>
+        </div>
+        <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="search by name or description"
+            className="me-2"
+            aria-label="Search"
+            onChange={handleSearch}
+          />
+        </Form>
       </div>
       <div className="card-container">
         {displayedProducts.length > 0 ?

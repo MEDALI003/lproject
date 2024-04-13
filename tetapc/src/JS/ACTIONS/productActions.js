@@ -26,6 +26,7 @@ let result= await axios.put(`http://localhost:8000/api/product/updateproduct/${_
 dispatch({type:MODIFY,payload:price})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
+
 }
 }
 export const get_product=()=>async(dispatch)=>{

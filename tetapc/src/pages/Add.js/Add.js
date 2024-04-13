@@ -41,7 +41,7 @@ function Add() {
         }
       );
       const data = await response.json();
-      console.log('Upload successful:', data);
+
 
       const updatedProduct = { ...product, photo: data.secure_url };
       await dispatch(addProduct(updatedProduct));

@@ -19,14 +19,19 @@ exports.getproduct=async(req,res)=>{
         res.status(500).send({msg:"problem on getting the product"})
     }
 }
-exports.editprice=async(req,res)=>{
+exports.editprice = async (req, res) => {
     try {
-        const {_id}= req.params
-        await product.updateOne({_id},{$set:{price:req.body}})
+        const { _id } = req.params;
+        // Assuming 'product' is a mongoose model representing your product collection in the database
+        await product.updateOne({ _id }, { $set: { price: req.body.price } });
+        // Sending a success response
+        res.status(200).send({ msg: "Product price updated successfully" });
     } catch (error) {
-        res.status(500).send({msg:"problem on updating the product"})
+        // Sending an error response with status code 500 and an error message
+        res.status(500).send({ msg: "Problem occurred while updating the product price" });
     }
 }
+
 exports.deleteProduct=async(req,res)=>{
     try {
         const {_id}=req.params

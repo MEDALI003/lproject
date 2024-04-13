@@ -42,15 +42,7 @@ function Navb() {
               Link
             </Nav.Link>
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="search by name or description"
-              className="me-2"
-              aria-label="Search"
-             
-            />
-          </Form>
+          
           <Nav.Link ><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
 
         </Navbar.Collapse>

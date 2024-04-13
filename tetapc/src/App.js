@@ -2,16 +2,16 @@ import Navb from "./components/Navbar/Navb";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Routes,Route } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import Register from "./pages/Register/register";
 import Login from "./pages/Login/Login";
-import Profile from "./pages/Profile";
 import { useSelector } from "react-redux";
 import Add from "./pages/Add.js/Add";
 import Error from "./pages/Error";
 import { useEffect, useState } from "react";
 import Test from "./components/Test.js/Test";
 import FooterB from "./components/Footer/Footer";
+import EditP from "./pages/EditProduct/EditP";
 function App() {
   const user = useSelector(state => state.user.user);
  
@@ -27,6 +27,7 @@ function App() {
         <Route path="/addproduct" element={<Add />} />
         <Route path="/error" element={<Error />} />
         <Route path="/productData/:_id" element={<Test />} />
+        <Route path="/editproduct/:_id" element={<EditP />} />
       </Routes>
       
         <ToastContainer
