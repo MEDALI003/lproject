@@ -9,6 +9,8 @@ export const FAIL_PRODUCT="fail_product"
 export const NEXTPAGE="next"
 export const PREVIOUSPAGE='previous'
 export const SEARCH="tri"
+export const ADD_BASKET="addtobasket"
+export const REMOVE_BASKET="remove from basket"
 export const addProduct=(product)=>async(dispatch)=>{
     dispatch({type:LOAD_PRODUCT})
 try {
@@ -22,8 +24,8 @@ try {
 export const modify=(price,_id)=>async(dispatch)=>{
 dispatch({type:LOAD_PRODUCT})
 try {
-let result= await axios.put(`http://localhost:8000/api/product/updateproduct/${_id}`,price)
-dispatch({type:MODIFY,payload:price})
+let result= await axios.put(`http://localhost:8000/api/product/updateproduct/${_id}`,{price})
+dispatch({type:MODIFY})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})
 

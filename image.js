@@ -18,7 +18,6 @@ const uploadToCloudinary = async (file) => {
     // Return the URL of the uploaded file
     return result.secure_url;
   } catch (error) {
-    console.error('Error uploading file to Cloudinary:', error);
     throw error; // Throw error for handling in the calling function
   }
 };

@@ -10,7 +10,7 @@ function EditP() {
   const Navigate=useNavigate()
     const[product,setProduct]=useState()
     const userval=useSelector(state=>state.user.user)
-    const _id=useParams()
+    const {_id}=useParams()
     const [price,setPrice]=useState()
     useEffect(()=>{
       if ((userval && userval.prefileges !== "Admin")) {
@@ -23,9 +23,10 @@ function EditP() {
         setProduct({...product,[e.target.name]:e.target.value})
     }
    const  handleClick=async()=>{
-    setPrice(product.price)
-      await dispatch(modify(price,_id))
+    
+      await dispatch(modify(product.price,_id))
       toast("product updated")
+      Navigate("/")
    }
    
   return (
@@ -33,7 +34,7 @@ function EditP() {
     
     <div className="elements-holder">
         <label>Price:</label>
-        <input type="text" className="text" placeholder="enter the price en TND" name="price"  onChange={(e)=>handlechange(e)}/> 
+        <input type="number" className="text" placeholder="enter the price en TND" name="price"  onChange={(e)=>handlechange(e)}/> 
     </div>
     
     <button onClick={handleClick}>Update</button>

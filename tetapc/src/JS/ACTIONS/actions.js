@@ -67,7 +67,6 @@ export const current = () => async (dispatch) => {
   
       dispatch({ type: CURRENT, payload: res.data });
     } catch (error) {
-      console.log(error);
     }
   };
   
