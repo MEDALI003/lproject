@@ -21,7 +21,7 @@ const corsOptions ={ origin:'*', credentials:true, //access-control-allow-creden
 //cloudinary
 
 
-
+app.use("/api/basket",require("./Routes/basket"))
 app.use("/api/user",require("./Routes/user"))
 app.use("/api/cloud",require("./uploadPhoto"))
 app.use("/api/product",require("./Routes/product"))
