@@ -9,7 +9,7 @@ import { useDispatch , useSelector} from "react-redux";
 import { logout } from '../../JS/ACTIONS/actions';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 function Navb() {
   const dispatch=useDispatch()
   const user =useSelector(state=>state.user.user)
@@ -43,7 +43,7 @@ function Navb() {
             </Nav.Link>
           </Nav>
           
-          <Nav.Link ><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
+          <Nav.Link style={{display:"flex",justifyContent:"space-around"}} ><FontAwesomeIcon  style={{paddingRight:"20px",paddingTop:"1.5px"}}icon={faCartShopping} /><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
 
         </Navbar.Collapse>
       </Container>
