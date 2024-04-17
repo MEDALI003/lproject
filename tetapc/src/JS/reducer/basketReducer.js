@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 
 
 const initialstate={
-    newbasket:null,
+    newbasket:[],
     basket:null,
     load:false,
     error:null
@@ -22,6 +22,15 @@ export const basketReducer=(state=initialstate,{type,payload})=>{
         case FAIL_BASKET:
             toast("cannot serve right now")
             return{...state,load:false,error:true}
+            case ADD_NEWBASKET:
+                const index = state.newbasket.findIndex(el => el[0] === payload[0]);
+                if (index !== -1) {
+                    const updatedBasket = [...state.newbasket];
+                    updatedBasket[index] = payload;
+                    return { ...state, newbasket: updatedBasket };
+                } else {
+                    return { ...state, newbasket: [...state.newbasket, payload] };
+                }            
         default:
             return state
     }

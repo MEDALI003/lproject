@@ -6,6 +6,7 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { delete_product } from '../../../JS/ACTIONS/productActions';
 import { current } from "../../../JS/ACTIONS/actions";
+import { addtobasket } from '../../../JS/ACTIONS/basketActions';
 
 const Card = (props) => {
   const dispatch = useDispatch();
@@ -15,7 +16,9 @@ const Card = (props) => {
   const handleClick = () => {
     navigate(`/productData/${props.product._id}`);
   }
-
+  const handleBasket=()=>{
+    dispatch(addtobasket([props.product._id,1]))
+  }
   useEffect(() => {
     if (!users) {
       dispatch(current());
@@ -33,7 +36,7 @@ const Card = (props) => {
         <p className="card-subtitle">Prix: {props.product.price} TND</p>
         <div>
           <div>
-            <button className="card-button" style={(user && user.prefileges === "Admin") ? { display: "none" } : { display: "flex" }}>Add</button>
+            <button className="card-button" style={(user && user.prefileges === "Admin") ? { display: "none" } : { display: "flex" }} onClick={()=>handleBasket()}>Add  Basket</button>
           </div>
           <div style={(user && user.prefileges === "Admin") ? { display: "flex", paddingBottom: "10px", justifyContent: "space-around", alignItems: "center" } : { display: "none" }}>
             <FontAwesomeIcon icon={faTrash} onClick={() => { dispatch(delete_product(props.product._id)) }} />

@@ -9,7 +9,7 @@ import { get_product } from '../../JS/ACTIONS/productActions'; // Importez votre
 const CardContainer = () => {
   const product = useSelector(state => state.product.product); // Importer le produit du store
   const dispatch = useDispatch(); // Permet d'envoyer des actions au store
-
+  const fix=0
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,9 +17,10 @@ const CardContainer = () => {
   const totalPages = product ? Math.ceil(product.length / itemsPerPage) : 0; // Check if product is not null
 
   useEffect(() => {
-    //dispatch(get_product()); // Dispatch l'action get_product lorsque le produit change
-    setCurrentPage(1); // Reset current page when product list changes
-  }, [ product]); // product est utilisé dans le tableau de dépendances
+    dispatch(get_product()); // Dispatch l'action get_product lorsque le produit change
+    setCurrentPage(1);
+     // Reset current page when product list changes
+  }, [ fix]); // product est utilisé dans le tableau de dépendances
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

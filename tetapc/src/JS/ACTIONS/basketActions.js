@@ -28,5 +28,8 @@ export const getbasket=()=>async(dispatch)=>{
     }
 }
 export const addtobasket=(element)=>{
-    return({type:ADD_NEWBASKET,payload:element})
+    return{
+        type:ADD_NEWBASKET,
+        payload:element
+    }
 }
