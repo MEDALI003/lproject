@@ -17,7 +17,7 @@ const Card = (props) => {
     navigate(`/productData/${props.product._id}`);
   }
   const handleBasket=()=>{
-    dispatch(addtobasket([props.product._id,1]))
+    dispatch(addtobasket({_id:props.product._id,quantity:1}))
   }
   useEffect(() => {
     if (!users) {

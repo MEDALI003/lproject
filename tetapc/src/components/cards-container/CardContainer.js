@@ -15,7 +15,10 @@ const CardContainer = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const itemsPerPage = 9;
   const totalPages = product ? Math.ceil(product.length / itemsPerPage) : 0; // Check if product is not null
-
+  const basket=useSelector(state=>state.basket.newbasket)
+  useEffect(()=>{
+    console.log(basket)
+  },[basket])
   useEffect(() => {
     dispatch(get_product()); // Dispatch l'action get_product lorsque le produit change
     setCurrentPage(1);
