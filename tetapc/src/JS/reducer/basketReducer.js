@@ -22,8 +22,6 @@ export const basketReducer=(state=initialstate,{type,payload})=>{
         case FAIL_BASKET:
             toast("cannot serve right now")
             return{...state,load:false,error:true}
-        case ADD_NEWBASKET:
-            return{...state,newbasket:state.newbasket.map(el=>el.productId===payload.productId?[])}
         default:
             return state
     }

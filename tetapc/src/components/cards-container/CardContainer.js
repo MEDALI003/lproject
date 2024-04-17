@@ -79,8 +79,8 @@ const CardContainer = () => {
 
   return (
     <div>
-      <div style={{backgroundColor:"#333",display:"flex",justifyContent:"space-around"}}>
-        <div style={{width:"170px"}}>
+      <div style={{backgroundColor:"#333",display:"flex",justifyContent:"space-around",height:"50px",alignItems:"center"}}>
+        <div style={{width:"200px"}}>
           <Form.Select aria-label="Default select example" onChange={handleSortChange}>
             <option defaultValue={"0"}>Méthode de Tri</option>
             <option value="1">Tri Ascendant par prix</option>
@@ -89,6 +89,7 @@ const CardContainer = () => {
         </div>
         <Form className="d-flex">
           <Form.Control
+          style={{width:"280px"}}
             type="search"
             placeholder="recherche par nom ou description"
             className="me-2"

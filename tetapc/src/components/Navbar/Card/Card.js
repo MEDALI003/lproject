@@ -30,7 +30,7 @@ const Card = (props) => {
       </div>
       <div className="card-content">
         <h2 className="card-title">{props.product.name}</h2>
-        <p className="card-subtitle">Prix: {props.product.price}</p>
+        <p className="card-subtitle">Prix: {props.product.price} TND</p>
         <div>
           <div>
             <button className="card-button" style={(user && user.prefileges === "Admin") ? { display: "none" } : { display: "flex" }}>Add</button>
