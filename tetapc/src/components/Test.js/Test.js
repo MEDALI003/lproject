@@ -6,18 +6,26 @@ import { get_product } from "../../JS/ACTIONS/productActions";
 import Spinner from "../Spinner";
 import FooterB from '../Footer/Footer';
 import Button from 'react-bootstrap/esm/Button';
+import { addtobasket } from '../../JS/ACTIONS/basketActions';
 const Test = () => {
   const { _id } = useParams();
   const dispatch=useDispatch()
   const products = useSelector(state => state.product.product);
   const [product, setProduct] = useState(null);
   const prodDataRef = useRef(null);
+  const[quant,setQuant]=useState(0)
   useEffect(()=>{
-    const dist=async()=>{
-      await dispatch(get_product())
+    const teste=async()=>{
+        dispatch(get_product())
     }
-    dist()
+    teste()
   },[products])
+  const handleClick=()=>{
+    if (quant>0) {
+      dispatch(addtobasket({productId:_id,quantity:quant}))
+    }
+   
+  }
   useEffect(() => {
     if(products){const filteredProduct = products.find(el => el._id === _id);
     setProduct(filteredProduct);}
@@ -50,10 +58,12 @@ const Test = () => {
             <div className="number-input">
               <input
                 type="number"
+                value={quant>=0?quant:0}
               id="numberInput"
+              onChange={(e)=>{setQuant(e.target.value)}}
                className="input-field"
                 style={{ width: '1.25cm',height: '1cm'}}
-                  /> <Button className='butt'>Add To Basket</Button>
+                  /> <Button className='butt' onClick={()=>handleClick()}>Add To Basket</Button>
     </div>
         </div>
         

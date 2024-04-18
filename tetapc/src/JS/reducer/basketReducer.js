@@ -23,14 +23,15 @@ export const basketReducer=(state=initialstate,{type,payload})=>{
             toast("cannot serve right now")
             return{...state,load:false,error:true}
             case ADD_NEWBASKET:
-                const index = state.newbasket.findIndex(el => el.productId === payload._id);
+                const index = state.newbasket.findIndex(el => el.productId === payload.productId);
                 if (index !== -1) {
-                    const updatedBasket = [...state.newbasket];
-                    updatedBasket[index] = payload;
-                    return { ...state, newbasket: updatedBasket };
+                const updatedBasket = [...state.newbasket];
+                updatedBasket[index].quantity += payload.quantity; // Ajouter la nouvelle quantité à la quantité existante
+                return { ...state, newbasket: updatedBasket };
                 } else {
-                    return { ...state, newbasket: [...state.newbasket, payload] };
-                }            
+                return { ...state, newbasket: [...state.newbasket, payload] };
+                }
+    
         default:
             return state
     }
