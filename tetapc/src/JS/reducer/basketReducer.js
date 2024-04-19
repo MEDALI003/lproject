@@ -26,10 +26,10 @@ export const basketReducer=(state=initialstate,{type,payload})=>{
                 const index = state.newbasket.findIndex(el => el.productId === payload.productId);
                 if (index !== -1) {
                 const updatedBasket = [...state.newbasket];
-                updatedBasket[index].quantity += payload.quantity; // Ajouter la nouvelle quantité à la quantité existante
+                updatedBasket[index].quantity += parseInt(payload.quantity); // Ajouter la nouvelle quantité à la quantité existante
                 return { ...state, newbasket: updatedBasket };
                 } else {
-                return { ...state, newbasket: [...state.newbasket, payload] };
+                return { ...state, newbasket: [...state.newbasket, {productId:payload.productId,quantity:parseInt(payload.quantity)}] };
                 }
     
         default:

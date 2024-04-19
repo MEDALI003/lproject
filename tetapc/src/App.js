@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Test from "./components/Test.js/Test";
 import FooterB from "./components/Footer/Footer";
 import EditP from "./pages/EditProduct/EditP";
+import Facture from "./pages/Facture.js/Facture";
 function App() {
   const user = useSelector(state => state.user.user);
  
@@ -28,6 +29,7 @@ function App() {
         <Route path="/error" element={<Error />} />
         <Route path="/productData/:_id" element={<Test />} />
         <Route path="/editproduct/:_id" element={<EditP />} />
+        <Route path="/facture" element={<Facture/>} />
       </Routes>
       
         <ToastContainer

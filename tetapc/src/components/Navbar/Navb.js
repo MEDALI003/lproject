@@ -60,8 +60,8 @@ function Navb() {
             <Nav.Link style={(user && user.prefileges === "Admin") ? { display: "flex" } : { display: "none" }}>
   <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>Add product</Link>
 </Nav.Link>
-            <Nav.Link href="#" disabled>
-              Link
+            <Nav.Link >
+              <Link to={"/facture"}>fact</Link>
             </Nav.Link>
           </Nav>
           
