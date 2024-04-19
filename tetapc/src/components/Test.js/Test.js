@@ -7,6 +7,7 @@ import Spinner from "../Spinner";
 import FooterB from '../Footer/Footer';
 import Button from 'react-bootstrap/esm/Button';
 import { addtobasket } from '../../JS/ACTIONS/basketActions';
+import Navb from '../Navbar/Navb';
 const Test = () => {
   const { _id } = useParams();
   const dispatch=useDispatch()
@@ -47,13 +48,14 @@ const Test = () => {
 
   return (
     <div>
+        <Navb  />
     { products?   <div className="contain-all">
         <div className="image-holder" style={{ height: imageHeight }}>
             <img src={product.photo} alt={product.name} />
         </div>
         <div className="prod-data" ref={prodDataRef}>
             <h1>Name: {product.name}</h1>
-            <h2>Price: {product.price}</h2>
+            <h2>Price: {product.price} TND</h2>
             <p>Description: {product.description}</p>
             <div className="number-input">
               <input

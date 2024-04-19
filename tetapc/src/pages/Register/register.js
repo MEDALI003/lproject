@@ -3,6 +3,7 @@ import './register.css'
 import { useDispatch , useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { current, signup } from '../../JS/ACTIONS/actions';
+import Navb from '../../components/Navbar/Navb';
 function Register() {
   const dispatch=useDispatch()
   const Navigate=useNavigate()
@@ -22,7 +23,8 @@ function Register() {
      
    }
    
-  return (
+  return (<div>
+    <Navb />
     <div id="Container">
     <div className="elements-holder">
         <label>Name:</label>
@@ -50,6 +52,7 @@ function Register() {
     </div>
     
     <button onClick={handleClick}>register</button>
+</div>
 </div>
   );
 }

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import {  } from '../../JS/ACTIONS/actions';
 import { modify } from '../../JS/ACTIONS/productActions';
 import { toast } from 'react-toastify';
+import Navb from '../../components/Navbar/Navb';
 function EditP() {
   const dispatch=useDispatch()
   const Navigate=useNavigate()
@@ -30,6 +31,8 @@ function EditP() {
    }
    
   return (
+    <div>
+      <Navb />
     <div id="Container">
     
     <div className="elements-holder">
@@ -38,6 +41,7 @@ function EditP() {
     </div>
     
     <button onClick={handleClick}>Update</button>
+</div>
 </div>
   );
 }

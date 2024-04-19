@@ -3,7 +3,6 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { useDispatch , useSelector} from "react-redux";
 import { logout } from '../../JS/ACTIONS/actions';
@@ -12,6 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-bootstrap/Modal';
 import { get_product } from '../../JS/ACTIONS/productActions';
+import React from 'react';
+
+
 
 function Navb() {
   const dispatch=useDispatch()
@@ -24,8 +26,11 @@ function Navb() {
   const fix=0
   useEffect(()=>{
     const getting=async()=>{
-      await dispatch(get_product())
+      while (!product) {
+        await dispatch(get_product())
       console.log(product)
+      }
+      
     }
    
     getting()
@@ -66,17 +71,34 @@ function Navb() {
         <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Basket</Modal.Title>
+          <Modal.Title ><div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>Basket</div></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <table>{basket.map(el=><tr>{product?.map(e=>e._id===el.productId?<th>{product.name}</th>:null)}<td>{el.quantity}</td></tr>)}</table>
-        </Modal.Body>
+  <table>
+    {basket.map(el => (
+      <tr key={el.productId} style={{borderBottom:"1px solid grey"}}>
+        {product?.map(e => {
+          if (e._id === el.productId) {
+            return (
+              <React.Fragment key={e._id}>
+                <th>{e.name}</th>
+                <td style={{width:"30px",textAlign:"center"}}>{el.quantity}</td>
+              </React.Fragment>
+            );
+          }
+          return null;
+        })}
+      </tr>
+    ))}
+  </table>
+</Modal.Body>
+
         <Modal.Footer>
+        <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

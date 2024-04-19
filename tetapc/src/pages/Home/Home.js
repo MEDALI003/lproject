@@ -4,6 +4,7 @@ import CardContainer from '../../components/cards-container/CardContainer';
 import FooterB from '../../components/Footer/Footer';
 import { current } from '../../JS/ACTIONS/actions';
 import { get_product } from '../../JS/ACTIONS/productActions';
+import Navb from '../../components/Navbar/Navb';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Home = () => {
  
   return (
     <div>
+      <Navb />
       {product?<CardContainer product={product}/>:null}
       <FooterB />
     </div>

@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { addProduct } from '../../JS/ACTIONS/productActions';
 import axios from 'axios';
+import Navb from '../../components/Navbar/Navb';
 
 function Add() {
   const dispatch = useDispatch();
@@ -52,6 +53,8 @@ function Add() {
   };
 
   return (
+    <div>
+      <Navb />
     <div id="Container">
       <div className="elements-holder">
         <label>Name:</label>
@@ -83,6 +86,7 @@ function Add() {
         <input type="number" className="text" placeholder="Price(TND)" name="price" onChange={handlechange} /> 
       </div>
       <button onClick={handleClick}>Complete</button>
+    </div>
     </div>
   );
 }

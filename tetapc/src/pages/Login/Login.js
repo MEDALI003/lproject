@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../JS/ACTIONS/actions';
 import { toast } from 'react-toastify';
+import Navb from '../../components/Navbar/Navb';
 
 function Login() {
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ function Login() {
   };
 
   return (
+    <div>
+      <Navb />
     <div id="Container">
       <div className="elements-holder">
         <label>Email:</label>
@@ -43,6 +46,7 @@ function Login() {
       </div>
       <button onClick={handleClick}>Login</button>
       <p>If you don't have an acccount you can <Link to={"/register"} style={{ textDecoration: "none" }}>Register</Link></p>
+    </div>
     </div>
   );
 }
