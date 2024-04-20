@@ -10,7 +10,7 @@ function Register() {
     const[user,setUser]=useState()
     const userval=useSelector(state=>state.user.user)
     useEffect(()=>{
-      if (userval!=null) {
+      if (userval) {
           Navigate("/")
       }
   },[userval])

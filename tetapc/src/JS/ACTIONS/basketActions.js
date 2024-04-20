@@ -1,7 +1,4 @@
 import axios from "axios"
-
-
-
 export const ADD_BASKET="add basket"
 export const GET_BASKET="get basket"
 export const LOAD_BASKET="load_basket"
@@ -13,6 +10,7 @@ export const addbasket=(basket)=>async(dispatch)=>{
     dispatch({type:LOAD_BASKET})    
     try {
         const res=await axios.post("http://localhost:8000/api/basket/addbasket",basket)
+        console.log(res)
         dispatch({type:ADD_BASKET , payload:res.data})
     } catch (error) {
         dispatch({type:FAIL_BASKET})

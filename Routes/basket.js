@@ -6,7 +6,7 @@ const router=express.Router()
 
 
 
-router.post("/assbasket",addbasket)
+router.post("/addbasket",addbasket)
 router.get("/getbasket",getbasket)
 
 

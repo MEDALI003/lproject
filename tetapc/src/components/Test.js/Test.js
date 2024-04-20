@@ -15,12 +15,13 @@ const Test = () => {
   const [product, setProduct] = useState(null);
   const prodDataRef = useRef(null);
   const[quant,setQuant]=useState(0)
+  const fix=0
   useEffect(()=>{
     const teste=async()=>{
         dispatch(get_product())
     }
     teste()
-  },[products])
+  },[fix])
   const handleClick=()=>{
     if (quant>0) {
       dispatch(addtobasket({productId:_id,quantity:quant}))

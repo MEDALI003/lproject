@@ -1,49 +1,44 @@
-import { toast } from "react-toastify"
-import { CURRENT, EDIT_PASSWORD, FAIL_USER, LOAD_USER, SIGNIN, LOGOUT, SIGNUP,EDIT_IMAGE } from "../ACTIONS/actions"
+import { toast } from "react-toastify";
+import { CURRENT, EDIT_PASSWORD, FAIL_USER, LOAD_USER, SIGNIN, LOGOUT, SIGNUP, EDIT_IMAGE } from "../ACTIONS/actions";
 
-
-//initialState
-const initialState={
-    user:null,
-    load:false,
-    error:null,
-
+const initialState = {
+    user: null,
+    load: false,
+    error: null,
 }
 
-
-//pure function
-
-const userReducer=(state=initialState,{type,payload})=>{
-
+const userReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case LOAD_USER :
-            return{...state,load:true}
+        case LOAD_USER:
+            return { ...state, load: true };
         case SIGNUP:
-            toast(payload.msg)
+            toast(payload.msg);
+            console.log(payload)
             localStorage.setItem("token", payload.token);
-            return{...state,user:payload.newUser,load:false}
-        case SIGNIN :
-            toast(payload.msg)
-                localStorage.setItem("token",payload.token)
-            return{...state,load:false,user:payload.foundUser}
+            return { ...state, user:{...payload.newUser}, load: false };
+        case SIGNIN:
+            toast(payload.msg);
+            localStorage.setItem("token", payload.token);
+            return { ...state, user: payload.foundUser, load: false };
         case FAIL_USER:
-            toast.error("please verify you're email and password")
-            return{...state,error:payload.data,load:false}
+            toast.error("Please verify your email and password.");
+            return { ...state, error: payload.data, load: false };
         case EDIT_PASSWORD:
-            toast("Password updated")
-            return{...state,load:false}
+            toast("Password updated.");
+            return { ...state, load: false };
         case EDIT_IMAGE:
-                toast("image updated success")
-                return{...state,load:false}
+            toast("Image updated successfully.");
+            return { ...state, load: false };
         case LOGOUT:
-            toast("Logged Out successffully")
-            localStorage.removeItem("token")
-            return{...state,user:null,load:false}  
+            toast("Logged out successfully.");
+            localStorage.removeItem("token");
+            return { ...state, user: null, load: false };
         case CURRENT:
-            toast(payload.msg)
-            return{...state,user:payload,load:false}
+            toast(payload.msg);
+            return { ...state, user: payload.foundUser, load: false };
         default:
-            return state
+            return state;
     }
 }
-export default userReducer
+
+export default userReducer;

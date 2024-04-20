@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import './Facture.css'; // Import du fichier de style CSS
-import { get_product } from '../../JS/ACTIONS/productActions';
+import { addbasket } from '../../JS/ACTIONS/basketActions'; // Import your action creator
+import './Facture.css';
 import { toast } from 'react-toastify';
 import Button from 'react-bootstrap/esm/Button';
 
 const Facture = () => {
-  const Navigate=useNavigate()
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // Rename to navigate for clarity
   const basket = useSelector(state => state.basket.newbasket);
   const product = useSelector(state => state.product.product);
+  const user = useSelector(state => state.user.user);
   const [items, setItems] = useState([]);
-  const [style,setStyle]=useState({display:"flex"})
+  const [style, setStyle] = useState({ display: "flex" });
+
   useEffect(() => {
     if (basket.length === 0 || product.length === 0) {
-      Navigate("/")
+      navigate("/");
     } else {
       const updatedItems = basket.map(basketItem => {
         const productItem = product.find(productItem => productItem._id === basketItem.productId);
@@ -27,13 +29,35 @@ const Facture = () => {
       });
       setItems(updatedItems);
     }
-  }, [basket, product, dispatch]);
-  const handleClick=async()=>{
-    setStyle({display:"none"})
-    Navigate('/')
-    toast("commande added successfully")
+  }, [basket, product, navigate]);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+  const nDate = new Date().toISOString();
+
+  const handleBasket = async () => {
+
+  if(user!=null){
+    const basketData = {
+      userId: user._id,
+      basket: basket,
+      date: nDate
+    };
+    console.log(basketData)
+    await dispatch(addbasket(basketData));
+    handleClick();
+    navigate("/");
   }
-  // Calculer le total de la facture
+}
+
+  const handleClick = () => {
+    setStyle({ display: "none" });
+    toast("Commande ajoutée avec succès");
+  }
+
   const totalAmount = items.reduce((total, item) => total + (item.price * item.quantity), 0);
 
   return (
@@ -60,7 +84,7 @@ const Facture = () => {
         </tbody>
       </table>
       <div className="total">Total: {totalAmount}</div>
-   <div style={style}><Button onClick={()=>handleClick()} >validate</Button><Button onClick={()=>Navigate("/")}></Button></div>   
+      <div style={style}><Button onClick={()=>handleBasket()}>Valider</Button></div>
     </div>
   );
 };

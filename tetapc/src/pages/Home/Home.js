@@ -10,15 +10,18 @@ const Home = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user.user);
   const product = useSelector(state => state.product.product);
+  const fix=0
  useEffect(()=>{
  const test=async()=>{ 
   if (!user) {
     await dispatch(current())
   }
-  dispatch(get_product())}
+  }
   test()
  },[user]) 
- 
+ useEffect(()=>{
+    dispatch(get_product())
+ },[fix])
   return (
     <div>
       <Navb />

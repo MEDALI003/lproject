@@ -13,6 +13,7 @@ export const signup=(newuser)=>async(dispatch)=>{
     dispatch({type:LOAD_USER})
     try {
         const res= await axios.post("http://localhost:8000/api/user/signup",newuser)
+        console.log(res)
         dispatch({type:SIGNUP,payload:res.data})
     } catch (error) {
        dispatch({type:FAIL_USER,payload:error}) 

@@ -26,9 +26,8 @@ function Navb() {
   const fix=0
   useEffect(()=>{
     const getting=async()=>{
-      while (!product) {
+      while (product===null) {
         await dispatch(get_product())
-      console.log(product)
       }
       
     }
@@ -60,9 +59,7 @@ function Navb() {
             <Nav.Link style={(user && user.prefileges === "Admin") ? { display: "flex" } : { display: "none" }}>
   <Link to="/addproduct" style={{ textDecoration: "none", color: "black", display: "flex" }}>Add product</Link>
 </Nav.Link>
-            <Nav.Link >
-              <Link to={"/facture"}>fact</Link>
-            </Nav.Link>
+            
           </Nav>
           
           <Nav.Link style={{display:"flex",justifyContent:"space-around"}} ><FontAwesomeIcon  style={{paddingRight:"20px",paddingTop:"1.5px"}}icon={faCartShopping} onClick={handleShow} /><Link to={"/"} style={user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}} onClick={()=>dispatch(logout())}><FontAwesomeIcon icon={faRightFromBracket} /></Link><Link to={"/login"} style={!user?{ textDecoration: "none",color:"black" ,display:"flex"}:{display:"none"}}><FontAwesomeIcon icon={faUser} /></Link></Nav.Link>
@@ -95,9 +92,12 @@ function Navb() {
 
         <Modal.Footer>
         <Button variant="primary" onClick={handleClose}>
-            Save Changes
+        <Link to={"/facture"} style={{ textDecoration: "none",color:"white" }}>
+            Confirm the order
+          </Link>
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+
+          <Button variant="secondary" onClick={handleClose} style={{color:"white"}}>
             Close
           </Button>
         </Modal.Footer>
