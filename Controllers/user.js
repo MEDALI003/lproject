@@ -77,3 +77,13 @@ exports.editphoto=async(req,res)=>{
         res.status(500).send({msg:"cannot update the image"})
     }
 }
+exports.getuser=async(req,res)=>{
+    try {
+        const{_id}=req.body
+        const foundUser=await user.findOne({_id})
+        foundUser?res.status(200).send({username:foundUser.lastName+" "+foundUser.name}):null
+    } catch (error) {
+        res.status(500).send({msg:"cannot find the user"})
+    }
+
+}

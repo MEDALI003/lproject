@@ -1,6 +1,6 @@
 const express=require("express")
 const { registerValidation, Validator } = require("../middleware/validator")
-const { signup, login, editPassword, editphoto, deleteuser } = require("../Controllers/user")
+const { signup, login, editPassword, editphoto, deleteuser, getuser } = require("../Controllers/user")
 const { isAuth } = require("../middleware/isAuth")
 
 //router 
@@ -28,5 +28,7 @@ router.put("/editphoto/:_id",editphoto)
 router.delete("/deleteuser/:_id",deleteuser)
 
 router.get("/current",isAuth,current)
+
+router.get("/getuser",getuser)
 
 module.exports=router

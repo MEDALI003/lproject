@@ -8,7 +8,7 @@ export const LOAD_USER="load user"
 export const FAIL_USER="fail user"
 export const CURRENT="current"
 export const  LOGOUT="logout"
-
+export const GET_USER="get user"
 export const signup=(newuser)=>async(dispatch)=>{
     dispatch({type:LOAD_USER})
     try {
@@ -77,4 +77,12 @@ export const logout=()=>{
         type:LOGOUT
     }
 }
-    
+export const getUser=(_id)=>async(dispatch)=>{
+    dispatch({type:LOAD_USER})
+    try {
+        const res=axios.get("http://localhost:8000/api/user/getuser",_id)
+        dispatch({type:GET_USER,payload:(await res).data.username})
+    } catch (error) {
+        dispatch({type:FAIL_USER})
+    }
+}

@@ -5,6 +5,8 @@ const initialState = {
     user: null,
     load: false,
     error: null,
+    userFB:null
+    
 }
 
 const userReducer = (state = initialState, { type, payload }) => {
@@ -36,6 +38,7 @@ const userReducer = (state = initialState, { type, payload }) => {
         case CURRENT:
             toast(payload.msg);
             return { ...state, user: payload.foundUser, load: false };
+
         default:
             return state;
     }

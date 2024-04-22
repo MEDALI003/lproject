@@ -13,6 +13,7 @@ import Test from "./components/Test.js/Test";
 import FooterB from "./components/Footer/Footer";
 import EditP from "./pages/EditProduct/EditP";
 import Facture from "./pages/Facture.js/Facture";
+import FactureA from "./pages/adminF/FactureA";
 function App() {
   const user = useSelector(state => state.user.user);
  
@@ -30,6 +31,7 @@ function App() {
         <Route path="/productData/:_id" element={<Test />} />
         <Route path="/editproduct/:_id" element={<EditP />} />
         <Route path="/facture" element={<Facture/>} />
+        <Route path="/facture/admin" element={<FactureA />} />
       </Routes>
       
         <ToastContainer
