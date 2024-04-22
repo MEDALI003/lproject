@@ -77,12 +77,3 @@ export const logout=()=>{
         type:LOGOUT
     }
 }
-export const getUser=(_id)=>async(dispatch)=>{
-    dispatch({type:LOAD_USER})
-    try {
-        const res=axios.get("http://localhost:8000/api/user/getuser",_id)
-        dispatch({type:GET_USER,payload:(await res).data.username})
-    } catch (error) {
-        dispatch({type:FAIL_USER})
-    }
-}
