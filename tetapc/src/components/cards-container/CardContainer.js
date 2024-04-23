@@ -21,7 +21,7 @@ const CardContainer = () => {
     dispatch(get_product()); // Dispatch l'action get_product lorsque le produit change
     setCurrentPage(1);
      // Reset current page when product list changes
-  }, [ fix]); // product est utilisé dans le tableau de dépendances
+  }, [fix]); // product est utilisé dans le tableau de dépendances
 
   const handlePageChange = (page) => {
     setCurrentPage(page);

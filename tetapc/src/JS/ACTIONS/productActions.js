@@ -34,7 +34,7 @@ dispatch({type:FAIL_PRODUCT,payload:error})
 export const get_product=()=>async(dispatch)=>{
 dispatch({type:LOAD_PRODUCT})
 try {
-let result= await axios.get(`http://localhost:8000/api/product/products`)
+let result= await axios.get("http://localhost:8000/api/product/products")
 dispatch({type:GET_PRODUCTS,payload:result.data})
 } catch (error) {
 dispatch({type:FAIL_PRODUCT,payload:error})

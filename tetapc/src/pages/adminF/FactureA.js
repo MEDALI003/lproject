@@ -12,15 +12,21 @@ const FactureA = () => {
       }
       getbaskete()
     },[fix])
-    console.log(basket)
   return (
     <div>
       <Navb />
       <div></div>
-        <table>
+        <table style={{border:"1px solid grey"}}>
           <tr> 
-            
+            <th>Client</th>
+            <th> Nombre des elements</th>
+            <th>prix</th>
           </tr>
+          {basket?.map(el=><tr>
+            <td>{el.userName}</td>
+            <td>{el.basket.length}</td>
+            <td>price</td>
+          </tr>)}
         </table>
     </div>
   )

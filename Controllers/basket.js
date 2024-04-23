@@ -33,6 +33,5 @@ exports.getbasket = async (req, res) => {
         res.status(200).send({facture}); // Changed Facture to facture
     } catch (error) {
         res.status(500).send({error});
-        console.log(error);
     }
 };
